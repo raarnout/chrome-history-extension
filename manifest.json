@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Activity Log Exporter",
+  "version": "1.0",
+  "description": "Tracks active tabs and saves activity logs. Allows export and removal of all logs.",
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "windows",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
