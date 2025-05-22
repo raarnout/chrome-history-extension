@@ -6,7 +6,7 @@
 
 - Records every Chrome tab and window switch, including URL and page title
 - Tracks session start/end time and duration in seconds
-- Logs are stored locally in your Chrome profile (using `chrome.storage.local`)
+- Logs are stored locally in your Chrome profile (using chrome.storage.local)
 - Export all activity logs to a CSV file with one click
 - Clear all stored logs with a single button
 - Responsive and clean popup interface using Bootstrap
@@ -14,7 +14,7 @@
 ## Installation
 
 1. **Clone or download this repository**
-2. Open `chrome://extensions/` in your Chrome browser
+2. Open chrome://extensions/ in your Chrome browser
 3. Enable **Developer mode** (top-right)
 4. Click **"Load unpacked"** and select the extension folder
 
@@ -34,12 +34,12 @@ All logs are stored **locally** in your Chrome profile and are never sent anywhe
 
 The extension requires the following permissions:
 
-- `tabs`, `webNavigation`, `windows` - for accurate activity tracking
-- `storage` - to save and retrieve logs
+- tabs, webNavigation, windows - for accurate activity tracking
+- storage - to save and retrieve logs
 
 ## Screenshots
 
-![Popup Example](screenshot_popup.png) <!-- Add your own screenshot if you like -->
+![Popup Example](screenshot_popup.png)
 
 ## Customization
 
@@ -49,7 +49,3 @@ Want to add analytics, more export formats, or filters? Contributions and ideas 
 ## License
 
 MIT License
-
----
-
-**Made with ❤️ for productivity.**

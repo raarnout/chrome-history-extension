@@ -18,27 +18,50 @@ function appendLogToLocalStorage(logObj) {
   });
 }
 
+function getDomainFromUrl(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+function getLabelForDomain(domain, callback) {
+  chrome.storage.local.get("domainLabels", (data) => {
+    const domainLabelMap = data.domainLabels || {};
+    callback(domain && domainLabelMap[domain] ? domainLabelMap[domain] : "");
+  });
+}
+
 function logSession(session) {
   const start = new Date(session.start);
   const end = new Date(session.end);
 
+  if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+    return;
+  }
+
   const { date: startDate, time: startTime } = getDateAndTimeParts(start);
   const { date: endDate, time: endTime } = getDateAndTimeParts(end);
-  const durationSeconds = Math.round((end - start) / 1000);
+  const durationSeconds = session.durationSeconds;
+  const domain = getDomainFromUrl(session.url);
 
-  const logObj = {
-    tabId: session.tabId,
-    url: session.url,
-    title: session.title,
-    windowId: session.windowId,
-    startDate,
-    startTime,
-    endDate,
-    endTime,
-    durationSeconds
-  };
+  getLabelForDomain(domain, (label) => {
+    const logObj = {
+      tabId: session.tabId,
+      url: session.url,
+      title: session.title,
+      windowId: session.windowId,
+      startDate,
+      startTime,
+      endDate,
+      endTime,
+      durationSeconds,
+      label
+    };
 
-  appendLogToLocalStorage(logObj);
+    appendLogToLocalStorage(logObj);
+  });
 }
 
 function endSession() {
